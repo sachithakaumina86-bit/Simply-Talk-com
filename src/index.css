@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #1F2433;
+    background-color: #F7F8FC;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+:root {
+  --primary: #3B2FD0;
+  --accent: #14C3A2;
+  --bg-page: #F7F8FC;
+  --text-dark: #1F2433;
+  --footer-bg: #1F2433;
+  --problem-bg: #221a8a;
+  --whatsapp: #25D366;
+}
+
+@keyframes gentle-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px -5px rgba(20, 195, 162, 0.4);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 20px 35px -5px rgba(20, 195, 162, 0.65);
+  }
+}
+
+.pulse-badge {
+  animation: gentle-pulse 8s infinite ease-in-out;
+}
+
+@keyframes float-lead {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-lead {
+  animation: float-lead 4s ease-in-out infinite;
+}

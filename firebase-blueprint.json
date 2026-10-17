@@ -1,0 +1,63 @@
+{
+  "entities": {
+    "Lead": {
+      "title": "Lead",
+      "description": "Captured lead from website chatbot or lead capture forms",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "email": { "type": "string", "maxLength": 120 },
+        "page": { "type": "string", "maxLength": 200 },
+        "channel": { "type": "string", "enum": ["website_bot", "contact_form", "whatsapp_demo"] },
+        "status": { "type": "string", "enum": ["new", "contacted", "qualified"] },
+        "summary": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "createdAt"]
+    },
+    "PartnerApplication": {
+      "title": "PartnerApplication",
+      "description": "Agency and reseller partnership applications",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "company": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 120 },
+        "website": { "type": "string", "maxLength": 200 },
+        "clientCount": { "type": "string", "maxLength": 50 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "company", "createdAt"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Authenticated user profile for customer dashboard",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "maxLength": 120 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "enum": ["admin", "client"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/leads/{leadId}": {
+      "schema": "Lead",
+      "description": "Captured sales leads and customer inquiries"
+    },
+    "/partner_applications/{appId}": {
+      "schema": "PartnerApplication",
+      "description": "Submitted partner agency applications"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile data accessible to the user and admins"
+    }
+  }
+}

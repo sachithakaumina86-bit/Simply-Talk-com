@@ -1,0 +1,6 @@
+{
+  "name": "Simply Talk",
+  "description": "AI chatbot for websites and WhatsApp that answers customer questions, qualifies buyers and captures contact details 24/7.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

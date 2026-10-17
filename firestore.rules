@@ -1,0 +1,72 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default Deny Catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == "sachithakaumina0@gmail.com" ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidLead(data) {
+      return data.keys().hasAll(['name', 'email', 'createdAt']) &&
+        data.keys().hasOnly(['name', 'phone', 'email', 'page', 'channel', 'status', 'summary', 'createdAt']) &&
+        data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+        data.email is string && data.email.size() > 3 && data.email.size() <= 120 &&
+        (!('phone' in data) || (data.phone is string && data.phone.size() <= 30)) &&
+        (!('page' in data) || (data.page is string && data.page.size() <= 200)) &&
+        (!('channel' in data) || data.channel in ['website_bot', 'contact_form', 'whatsapp_demo']) &&
+        (!('status' in data) || data.status in ['new', 'contacted', 'qualified']) &&
+        (!('summary' in data) || (data.summary is string && data.summary.size() <= 500));
+    }
+
+    function isValidPartnerApp(data) {
+      return data.keys().hasAll(['name', 'email', 'company', 'createdAt']) &&
+        data.keys().hasOnly(['name', 'email', 'company', 'website', 'clientCount', 'createdAt']) &&
+        data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+        data.company is string && data.company.size() > 0 && data.company.size() <= 100 &&
+        data.email is string && data.email.size() > 3 && data.email.size() <= 120 &&
+        (!('website' in data) || (data.website is string && data.website.size() <= 200)) &&
+        (!('clientCount' in data) || (data.clientCount is string && data.clientCount.size() <= 50));
+    }
+
+    // Leads collection: Public lead capture on marketing site, read/manage by admin
+    match /leads/{leadId} {
+      allow get, list: if isSignedIn();
+      allow create: if isValidId(leadId) && isValidLead(request.resource.data);
+      allow update, delete: if isAdmin();
+    }
+
+    // Partner Applications: Public application submit, read by admin
+    match /partner_applications/{appId} {
+      allow get, list: if isSignedIn();
+      allow create: if isValidId(appId) && isValidPartnerApp(request.resource.data);
+      allow update, delete: if isAdmin();
+    }
+
+    // User profiles
+    match /users/{userId} {
+      allow get: if isOwner(userId) || isAdmin();
+      allow list: if isAdmin();
+      allow create, update: if isOwner(userId);
+      allow delete: if isAdmin();
+    }
+  }
+}
