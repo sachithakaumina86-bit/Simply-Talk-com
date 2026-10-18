@@ -38,8 +38,12 @@ export const Footer: React.FC = () => {
                 <Placeholder value={PLACEHOLDERS.COMPANY_NAME} />
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[#14C3A2]" />
-                <Placeholder value={PLACEHOLDERS.PHONE} />
+                <Phone className="w-3.5 h-3.5 text-[#14C3A2] shrink-0" />
+                <div className="flex flex-wrap items-center gap-x-1.5 text-slate-300">
+                  <a href="tel:0716460440" className="hover:text-[#14C3A2] transition-colors">071 646 0440</a>
+                  <span className="text-slate-500">/</span>
+                  <a href="tel:0716992185" className="hover:text-[#14C3A2] transition-colors">071 699 2185</a>
+                </div>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#14C3A2]" />

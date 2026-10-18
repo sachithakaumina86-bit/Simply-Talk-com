@@ -32,10 +32,10 @@ export interface PlaceholdersConfig {
 export const PLACEHOLDERS: PlaceholdersConfig = {
   COMPANY_NAME: 'SimplyTalk',
   REGISTERED_ADDRESS: '[123 Business Street, Suite 400, City, Country]',
-  PHONE: '[+1 (555) 019-2834]',
+  PHONE: '071 646 0440 / 071 699 2185',
   EMAIL: '[hello@simplytalk.ai]',
   TEAM_EMAIL: '[team@simplytalk.ai]',
-  WHATSAPP_DEMO_NUMBER: '15550192834', // For https://wa.me/
+  WHATSAPP_DEMO_NUMBER: '94716460440', // For https://wa.me/
   APP_URL: '#/login', // Link to dashboard / app
   // Per Section 4.1 & 4.2: Show only as visible placeholder or hide in production unless filled
   RATING: null, // e.g. "4.9/5 by early users"

@@ -76,9 +76,13 @@ export const AboutPage: React.FC = () => {
               <Placeholder value={PLACEHOLDERS.COMPANY_NAME} />
             </div>
             <div className="flex items-center gap-3">
-              <Phone className="w-4 h-4 text-[#3B2FD0]" />
+              <Phone className="w-4 h-4 text-[#3B2FD0] shrink-0" />
               <span className="font-semibold text-slate-800">Phone:</span>
-              <Placeholder value={PLACEHOLDERS.PHONE} />
+              <div className="flex flex-wrap items-center gap-x-1.5 text-slate-600">
+                <a href="tel:0716460440" className="hover:text-[#3B2FD0] transition-colors">071 646 0440</a>
+                <span className="text-slate-400">/</span>
+                <a href="tel:0716992185" className="hover:text-[#3B2FD0] transition-colors">071 699 2185</a>
+              </div>
             </div>
             <div className="flex items-center gap-3">
               <Mail className="w-4 h-4 text-[#3B2FD0]" />
