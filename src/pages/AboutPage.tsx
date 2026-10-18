@@ -85,14 +85,16 @@ export const AboutPage: React.FC = () => {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Mail className="w-4 h-4 text-[#3B2FD0]" />
+              <Mail className="w-4 h-4 text-[#3B2FD0] shrink-0" />
               <span className="font-semibold text-slate-800">Email:</span>
-              <Placeholder value={PLACEHOLDERS.EMAIL} />
+              <a href={`mailto:${PLACEHOLDERS.EMAIL}`} className="hover:text-[#3B2FD0] transition-colors">
+                {PLACEHOLDERS.EMAIL}
+              </a>
             </div>
-            <div className="flex items-center gap-3">
-              <MapPin className="w-4 h-4 text-[#3B2FD0]" />
+            <div className="flex items-start gap-3">
+              <MapPin className="w-4 h-4 text-[#3B2FD0] shrink-0 mt-0.5" />
               <span className="font-semibold text-slate-800">Address:</span>
-              <Placeholder value={PLACEHOLDERS.REGISTERED_ADDRESS} />
+              <span>{PLACEHOLDERS.REGISTERED_ADDRESS}</span>
             </div>
           </div>
         </div>

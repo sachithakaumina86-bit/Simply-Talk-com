@@ -46,12 +46,14 @@ export const Footer: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#14C3A2]" />
-                <Placeholder value={PLACEHOLDERS.EMAIL} />
+                <Mail className="w-3.5 h-3.5 text-[#14C3A2] shrink-0" />
+                <a href={`mailto:${PLACEHOLDERS.EMAIL}`} className="hover:text-[#14C3A2] transition-colors">
+                  {PLACEHOLDERS.EMAIL}
+                </a>
               </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#14C3A2]" />
-                <Placeholder value={PLACEHOLDERS.REGISTERED_ADDRESS} />
+              <div className="flex items-start gap-2">
+                <MapPin className="w-3.5 h-3.5 text-[#14C3A2] shrink-0 mt-0.5" />
+                <span>{PLACEHOLDERS.REGISTERED_ADDRESS}</span>
               </div>
             </div>
           </div>
