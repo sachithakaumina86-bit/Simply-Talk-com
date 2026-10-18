@@ -323,6 +323,10 @@ export const ChatWidget: React.FC = () => {
                   <img
                     src="/logo.jpeg"
                     alt="SimplyTalk"
+                    width={28}
+                    height={28}
+                    loading="lazy"
+                    decoding="async"
                     className="w-7 h-7 rounded-full object-cover mr-2 shrink-0 shadow-xs ring-1 ring-emerald-500/30"
                   />
                 )}
@@ -358,6 +362,10 @@ export const ChatWidget: React.FC = () => {
                 <img
                   src="/logo.jpeg"
                   alt="SimplyTalk"
+                  width={28}
+                  height={28}
+                  loading="lazy"
+                  decoding="async"
                   className="w-7 h-7 rounded-full object-cover shrink-0 shadow-xs ring-1 ring-emerald-500/30"
                 />
                 <div className="bg-white border border-slate-200 rounded-2xl px-3 py-2 flex items-center gap-1 shadow-2xs">

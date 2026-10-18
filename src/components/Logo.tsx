@@ -27,6 +27,8 @@ export const Logo: React.FC<LogoProps> = ({
         alt="SimplyTalk Logo"
         width={markSize}
         height={markSize}
+        loading="eager"
+        decoding="async"
         className="rounded-full object-cover shrink-0 shadow-xs ring-1 ring-emerald-500/20 hover:scale-105 transition-transform duration-300"
       />
 

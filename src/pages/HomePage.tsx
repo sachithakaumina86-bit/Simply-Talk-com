@@ -22,11 +22,15 @@ import {
 } from 'lucide-react';
 import { Seo } from '../components/Seo';
 import { PhoneMockup } from '../components/PhoneMockup';
-import { ThreeJsFrontDeskHero } from '../components/ThreeJsFrontDeskHero';
+
+const ThreeJsFrontDeskHero = React.lazy(() =>
+  import('../components/ThreeJsFrontDeskHero').then((m) => ({ default: m.ThreeJsFrontDeskHero }))
+);
 import { SITE_COPY } from '../data/siteCopy';
 import { PLACEHOLDERS } from '../data/placeholders';
 import { Placeholder } from '../components/Placeholder';
 import { INDUSTRIES } from '../data/industries';
+import { ResultsSection } from '../components/ResultsSection';
 
 export const HomePage: React.FC = () => {
   const [viewMode, setViewMode] = useState<'whatsapp' | 'threejs'>('whatsapp');
@@ -145,7 +149,15 @@ export const HomePage: React.FC = () => {
                 <PhoneMockup showLeadBadge={true} />
               ) : (
                 <div className="w-full">
-                  <ThreeJsFrontDeskHero />
+                  <React.Suspense
+                    fallback={
+                      <div className="w-full h-[460px] md:h-[500px] rounded-3xl bg-slate-100/80 border border-slate-200 flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-full border-3 border-[#3B2FD0] border-t-[#14C3A2] animate-spin" />
+                      </div>
+                    }
+                  >
+                    <ThreeJsFrontDeskHero />
+                  </React.Suspense>
                 </div>
               )}
             </div>
@@ -293,6 +305,9 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* RESULTS SECTION (Recharts Conversion Analytics) */}
+      <ResultsSection />
 
       {/* 4.6 COMPARISON TABLE */}
       <section className="py-20 sm:py-24 bg-[#F7F8FC]">

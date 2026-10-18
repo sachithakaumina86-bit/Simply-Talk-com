@@ -28,6 +28,10 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
               <img
                 src="/logo.jpeg"
                 alt="SimplyTalk"
+                width={36}
+                height={36}
+                loading="lazy"
+                decoding="async"
                 className="w-9 h-9 rounded-full object-cover shadow-xs ring-1 ring-white/30"
               />
               <div className="flex flex-col">
